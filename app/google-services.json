@@ -1,0 +1,49 @@
+{
+  "project_info": {
+    "project_number": "476273456873",
+    "firebase_url": "https://iot-timbre-default-rtdb.firebaseio.com",
+    "project_id": "iot-timbre",
+    "storage_bucket": "iot-timbre.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:476273456873:android:89704d5d6ef502722b2278",
+        "android_client_info": {
+          "package_name": "com.example.myapplication"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCrO3ZNhmuEWWq30MxbWYWZSP5FrDsuGCM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:476273456873:android:eed76ad2761271162b2278",
+        "android_client_info": {
+          "package_name": "com.example.timbreapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCrO3ZNhmuEWWq30MxbWYWZSP5FrDsuGCM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
