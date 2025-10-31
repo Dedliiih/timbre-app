@@ -22,6 +22,22 @@ import com.example.timbreapp.data.FirebaseNotification
 import com.example.timbreapp.data.NotificationType
 import com.example.timbreapp.firestore.LeerFirebase
 import com.example.timbreapp.firestore.LeerListaFirebase
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
+
+private fun formatTimestamp(timestamp: Long): String {
+    if (timestamp == 0L) return "Fecha desconocida"
+
+    try {
+        val spanishLocale = Locale.Builder().setLanguage("es").setRegion("ES").build()
+        val sdf = SimpleDateFormat("dd 'de' MMM 'de' yyyy, 'a las' HH:mm", spanishLocale)
+        val netDate = Date(timestamp)
+        return sdf.format(netDate)
+    } catch (e: Exception) {
+        return "Fecha desconocida"
+    }
+}
 
 @Composable
 fun NotificationsScreen(modifier: Modifier = Modifier) {
@@ -30,6 +46,7 @@ fun NotificationsScreen(modifier: Modifier = Modifier) {
         valueType = FirebaseNotification::class.java
 
     )
+
 
     Column(
         modifier = modifier
@@ -46,9 +63,8 @@ fun NotificationsScreen(modifier: Modifier = Modifier) {
 
         Box(
             modifier = Modifier
-                .fillMaxSize()
-                .padding(horizontal = 16.dp),
-            contentAlignment = Alignment.Center
+                .fillMaxSize(),
+            contentAlignment = if (isLoading || errorMessage != null) Alignment.Center else Alignment.TopCenter
         ) {
             if (isLoading) {
                 CircularProgressIndicator()
@@ -60,8 +76,7 @@ fun NotificationsScreen(modifier: Modifier = Modifier) {
                 val notificationList = firebaseList.map { firebaseNotification ->
                     Notification(
                         notificationType = NotificationType.createNotificationFromId(firebaseNotification.notificationType ?: "DOORBELL"),
-                        date = firebaseNotification.date ?: "Fecha desconocida"
-
+                        date = formatTimestamp(firebaseNotification.date ?: 0L)
                     )
             }
                 LazyColumn(

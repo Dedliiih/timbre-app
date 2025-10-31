@@ -37,5 +37,5 @@ data class Notification(
 
 data class FirebaseNotification(
     val notificationType: String? = null,
-    val date: String? = null
+    val date: Long? = null
 )
