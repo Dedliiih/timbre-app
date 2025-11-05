@@ -36,9 +36,9 @@ import androidx.compose.material.icons.filled.CheckCircle
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.ui.Alignment
-import androidx.compose.ui.graphics.vector.ImageVector
-import com.example.timbreapp.firestore.EscribirBuzzerConfigEnFirebase
 import com.example.timbreapp.firestore.LeerFirebase
+import com.example.timbreapp.firestore.EscribirFirebase
+import com.example.timbreapp.ui.components.MelodyItem
 
 private val melodyOptions = listOf(
     MelodyOption(
@@ -71,7 +71,7 @@ fun BuzzerSoundScreen(navController: NavController) {
 
     val handleSaveMelody = { melodyConfig: BuzzerConfig ->
         isWriting = true
-        EscribirBuzzerConfigEnFirebase(
+        EscribirFirebase(
             field = "buzzer_config",
             value = melodyConfig,
             onSuccess = {
@@ -118,7 +118,7 @@ fun BuzzerSoundScreen(navController: NavController) {
                     verticalArrangement = Arrangement.spacedBy(16.dp)
                 ) {
                     items(melodyOptions) { melody ->
-                        val isActive = melody.buzzerConfig == currentConfig
+                        val isActive = currentConfig != null && melody.buzzerConfig == currentConfig
                         MelodyItem(
                           melodyName = melody.name,
                             isActive = isActive,
@@ -131,43 +131,6 @@ fun BuzzerSoundScreen(navController: NavController) {
                     }
                 }
             }
-        }
-    }
-}
-
-@Composable
-fun MelodyItem(melodyName: String, isActive: Boolean, onSelect: () -> Unit) {
-    OutlinedCard(modifier = Modifier.fillMaxWidth()) {
-        Row (
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 16.dp, vertical = 20.dp),
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.SpaceBetween
-        ) {
-            Text(text = melodyName, style = MaterialTheme.typography.bodyLarge, fontWeight = FontWeight.Medium)
-
-            if (isActive) {
-                Row(verticalAlignment = Alignment.CenterVertically) {
-                    Text(
-                        text = "Activado",
-                        style = MaterialTheme.typography.bodyMedium,
-                        color = MaterialTheme.colorScheme.primary,
-                        modifier = Modifier.padding(end = 8.dp)
-                    )
-                    Icon(
-                        imageVector = Icons.Default.CheckCircle,
-                        contentDescription = "Melodía activada",
-                        tint = MaterialTheme.colorScheme.primary
-                    )
-                }
-            } else {
-                Button(onClick = onSelect) {
-                    Text("Seleccionar")
-                }
-            }
-
-
         }
     }
 }

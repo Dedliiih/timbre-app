@@ -22,7 +22,7 @@ fun <T: Any> LeerListaFirebase(
     var errorMessage by remember { mutableStateOf<String?>(null) }
 
     LaunchedEffect(key1 = field) {
-        val database = Firebase.database("https://iot-timbre-default-rtdb.firebaseio.com/")
+        val database = Firebase.database
         val myRef = database.getReference(field)
 
         val listener = object : ValueEventListener {

@@ -1,12 +1,12 @@
-package com.example.componentestest.Componentes.Firebase
+package com.example.timbreapp.firestore
 
 import android.util.Log
 import com.google.firebase.Firebase
 import com.google.firebase.database.database
 
-fun escribirFirebase(
+fun <T: Any>EscribirFirebase(
     field: String,
-    value: ActuatorControl,
+    value: T,
     onSuccess: () -> Unit = {},
     onError: (String) -> Unit = {}
 ) {
