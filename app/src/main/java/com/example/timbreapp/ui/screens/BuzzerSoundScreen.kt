@@ -35,10 +35,13 @@ import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.CheckCircle
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.timbreapp.firestore.LeerFirebase
 import com.example.timbreapp.firestore.EscribirFirebase
 import com.example.timbreapp.ui.components.MelodyItem
+import com.example.timbreapp.ui.viewmodel.BuzzerSoundViewModel
 
 private val melodyOptions = listOf(
     MelodyOption(
@@ -59,32 +62,18 @@ private val melodyOptions = listOf(
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun BuzzerSoundScreen(navController: NavController) {
+fun BuzzerSoundScreen(
+    navController: NavController,
+    buzzerSoundViewModel: BuzzerSoundViewModel = viewModel()
+) {
     val (currentConfig, isReading, readError) = LeerFirebase(
         field = "buzzer_config",
         valueType = BuzzerConfig::class.java
     )
 
-    var isWriting by remember { mutableStateOf(false) }
+    val isWriting by buzzerSoundViewModel.isWriting.collectAsState()
     val context = LocalContext.current
     val isLoading = isReading || isWriting
-
-    val handleSaveMelody = { melodyConfig: BuzzerConfig ->
-        isWriting = true
-        EscribirFirebase(
-            field = "buzzer_config",
-            value = melodyConfig,
-            onSuccess = {
-                isWriting = false
-                Toast.makeText(context, "Melodía actualizada con éxito", Toast.LENGTH_SHORT).show()
-                navController.popBackStack()
-            },
-            onError = { errorMessage ->
-                isWriting = false
-                Toast.makeText(context, "Error al guardar la melodía: $errorMessage", Toast.LENGTH_LONG).show()
-            }
-        )
-    }
 
     Scaffold(
         topBar = {
@@ -125,7 +114,17 @@ fun BuzzerSoundScreen(navController: NavController) {
                             isActive = isActive,
                             onSelect = {
                                 if (!isActive) {
-                                    handleSaveMelody(melody.buzzerConfig)
+                                    buzzerSoundViewModel.saveBuzzerSound(
+                                        melody = melody.buzzerConfig,
+                                        onSuccess = {
+                                            Toast.makeText(context, "Melodía actualizada con éxito", Toast.LENGTH_SHORT).show()
+                                            navController.popBackStack()
+                                        },
+                                        onError = { errorMessage ->
+                                            Toast.makeText(context, "Error al guardar la melodía: $errorMessage", Toast.LENGTH_LONG).show()
+                                        }
+                                    )
+
                                 }
                             }
                         )
