@@ -10,4 +10,6 @@ sealed class Screen(val route: String, val title: String, val icon: ImageVector)
     object Notifications: Screen("notifications", "Notificaciones", Icons.Default.Notifications)
     object Settings: Screen("settings", "Ajustes", Icons.Default.Settings)
     object BuzzerSound: Screen("buzzer_sound_screen", "Sonido del timbre", Icons.Default.Campaign)
+
+    object AlertSchedule: Screen("alert_schedule_screen", "Horario de alerta", Icons.Default.Campaign)
 }

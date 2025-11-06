@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowForwardIos
 import androidx.compose.material.icons.filled.MusicNote
+import androidx.compose.material.icons.filled.Schedule
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -38,6 +39,15 @@ fun SettingsScreen(navController: NavController) {
                 icon = Icons.Default.MusicNote,
                 onClick = {
                     navController.navigate(Screen.BuzzerSound.route)
+                }
+            )
+            HorizontalDivider(modifier = Modifier.padding(horizontal = 16.dp))
+            SettingItem(
+                title = "Horarios de Alerta",
+                description = "Configura el horario de alerta de tu timbre",
+                icon = Icons.Default.Schedule,
+                onClick = {
+                    navController.navigate(Screen.AlertSchedule.route)
                 }
             )
             HorizontalDivider(modifier = Modifier.padding(horizontal = 16.dp))

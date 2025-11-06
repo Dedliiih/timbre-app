@@ -77,6 +77,7 @@ fun BuzzerSoundScreen(navController: NavController) {
             onSuccess = {
                 isWriting = false
                 Toast.makeText(context, "Melodía actualizada con éxito", Toast.LENGTH_SHORT).show()
+                navController.popBackStack()
             },
             onError = { errorMessage ->
                 isWriting = false
