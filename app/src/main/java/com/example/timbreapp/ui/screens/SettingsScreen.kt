@@ -34,23 +34,35 @@ fun SettingsScreen(navController: NavController) {
                 .padding(paddingValues)
         ) {
             SettingItem(
-                title = "Sonido del Timbre",
+                title = Screen.BuzzerSound.title,
                 description = "Cambia la melodía del buzzer",
-                icon = Icons.Default.MusicNote,
+                icon = Screen.BuzzerSound.icon,
                 onClick = {
                     navController.navigate(Screen.BuzzerSound.route)
                 }
             )
             HorizontalDivider(modifier = Modifier.padding(horizontal = 16.dp))
+
             SettingItem(
-                title = "Horarios de Alerta",
+                title = Screen.AlertSchedule.title,
                 description = "Configura el horario de alerta de tu timbre",
-                icon = Icons.Default.Schedule,
+                icon = Screen.AlertSchedule.icon,
                 onClick = {
                     navController.navigate(Screen.AlertSchedule.route)
                 }
             )
             HorizontalDivider(modifier = Modifier.padding(horizontal = 16.dp))
+
+            SettingItem(
+               title = Screen.AlertModes.title,
+               description = "Configura los modos de alerta",
+               icon = Screen.AlertModes.icon,
+               onClick = {
+                   navController.navigate(Screen.AlertModes.route)
+               }
+            )
+            HorizontalDivider(modifier = Modifier.padding(horizontal = 16.dp))
+
         }
     }
 }

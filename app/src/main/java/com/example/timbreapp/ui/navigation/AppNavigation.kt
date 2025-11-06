@@ -5,6 +5,7 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.example.timbreapp.ui.screens.AlertModesScreen
 import com.example.timbreapp.ui.screens.AlertScheduleScreen
 import com.example.timbreapp.ui.screens.BuzzerSoundScreen
 import com.example.timbreapp.ui.screens.NotificationsScreen
@@ -27,6 +28,10 @@ fun AppNavigation(navController: NavHostController, modifier: Modifier) {
 
         composable(Screen.AlertSchedule.route) {
             AlertScheduleScreen(navController = navController)
+        }
+
+        composable(Screen.AlertModes.route) {
+            AlertModesScreen(navController = navController)
         }
     }
 }
