@@ -8,18 +8,20 @@ import androidx.navigation.compose.composable
 import com.example.timbreapp.ui.screens.AlertModesScreen
 import com.example.timbreapp.ui.screens.AlertScheduleScreen
 import com.example.timbreapp.ui.screens.BuzzerSoundScreen
+import com.example.timbreapp.ui.screens.LoginScreen
 import com.example.timbreapp.ui.screens.NotificationsScreen
 import com.example.timbreapp.ui.screens.SettingsScreen
+import com.example.timbreapp.ui.viewmodel.AuthViewModel
 
 @Composable
-fun AppNavigation(navController: NavHostController, modifier: Modifier) {
+fun AppNavigation(navController: NavHostController, modifier: Modifier, authViewModel: AuthViewModel) {
     NavHost(navController = navController, startDestination = Screen.Notifications.route) {
         composable(Screen.Notifications.route) {
             NotificationsScreen()
         }
 
         composable(Screen.Settings.route) {
-            SettingsScreen(navController = navController)
+            SettingsScreen(navController = navController, authViewModel = authViewModel)
         }
 
         composable(Screen.BuzzerSound.route) {

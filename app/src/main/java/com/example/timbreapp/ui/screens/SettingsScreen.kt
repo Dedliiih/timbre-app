@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowForwardIos
+import androidx.compose.material.icons.automirrored.filled.Logout
 import androidx.compose.material.icons.filled.MusicNote
 import androidx.compose.material.icons.filled.Schedule
 import androidx.compose.material3.HorizontalDivider
@@ -21,12 +22,17 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.example.timbreapp.ui.navigation.Screen
 import com.example.timbreapp.ui.components.SettingItem
+import com.example.timbreapp.ui.viewmodel.AuthViewModel
 
 @Composable
-fun SettingsScreen(navController: NavController) {
+fun SettingsScreen(
+    navController: NavController,
+    authViewModel : AuthViewModel
+) {
     Scaffold{ paddingValues ->
         Column(
             modifier = Modifier
@@ -63,6 +69,15 @@ fun SettingsScreen(navController: NavController) {
             )
             HorizontalDivider(modifier = Modifier.padding(horizontal = 16.dp))
 
+            SettingItem(
+                title = "Cerrar Sesión",
+                description = "Cierra tu sesión actual",
+                icon = Icons.AutoMirrored.Filled.Logout,
+                onClick = {
+                    authViewModel.signOut()
+                }
+            )
+            HorizontalDivider(modifier = Modifier.padding(horizontal = 16.dp))
         }
     }
 }
