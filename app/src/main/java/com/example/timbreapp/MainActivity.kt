@@ -39,36 +39,9 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun MainScreen() {
     val authViewModel: AuthViewModel = viewModel()
-    val currentUser by authViewModel.currentUser.collectAsState()
     val navController = rememberNavController()
-
-    LaunchedEffect(currentUser) {
-        print(currentUser)
-        if (currentUser == null) {
-            navController.navigate(Screen.Login.route) {
-                popUpTo(navController.graph.findStartDestination().id) {
-                    inclusive = true
-                }
-            }
-        }
-    }
 
     MainNavigation(navController = navController, authViewModel = authViewModel)
 }
 
-@Composable
-fun MainAppScreen(authViewModel: AuthViewModel) {
-    val navController = rememberNavController()
 
-    Scaffold(
-        bottomBar = {
-            BottomNavBar(navController = navController)
-        }
-    ) { innerPadding ->
-        AppNavigation(
-            navController = navController,
-            modifier = Modifier.padding(innerPadding),
-            authViewModel = authViewModel
-            )
-    }
-}
