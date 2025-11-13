@@ -2,6 +2,7 @@ package com.example.timbreapp.ui.navigation
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Campaign
+import androidx.compose.material.icons.filled.HomeMini
 import androidx.compose.material.icons.filled.Login
 import androidx.compose.material.icons.filled.Notifications
 import androidx.compose.material.icons.filled.Schedule
@@ -16,4 +17,5 @@ sealed class Screen(val route: String, val title: String, val icon: ImageVector)
     object BuzzerSound: Screen("buzzer_sound_screen", "Sonido del timbre", Icons.Default.Campaign)
     object AlertSchedule: Screen("alert_schedule_screen", "Horario de alerta", Icons.Default.Schedule)
     object AlertModes: Screen("alert_modes_screen", "Modos de alerta", Icons.Default.ToggleOn)
+    object MainApp: Screen("main_app", "Main", Icons.Default.HomeMini)
 }

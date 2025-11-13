@@ -47,7 +47,6 @@ fun NotificationsScreen(modifier: Modifier = Modifier) {
 
     )
 
-
     Column(
         modifier = modifier
             .fillMaxSize()

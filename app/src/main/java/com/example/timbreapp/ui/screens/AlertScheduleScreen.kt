@@ -68,6 +68,7 @@ fun AlertScheduleScreen(
     var sensorStartTime by remember { mutableStateOf("00:00") }
     var sensorEndTime by remember { mutableStateOf("00:00") }
 
+    // Cambiar los estados por los nuevos valores llegados desde Firebase
     LaunchedEffect(buttonConfig) {
         buttonConfig?.let {
             buttonStartTime = scheduleViewModel.minutesToTime(it.startTime)

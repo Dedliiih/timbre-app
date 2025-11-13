@@ -19,22 +19,22 @@ fun MainNavigation(
     authViewModel: AuthViewModel
 ) {
     val currentUser by authViewModel.currentUser.collectAsState()
-    key (currentUser) {
-        val startDestination = if (currentUser != null) "main_app" else Screen.Login.route
+    key (currentUser) { // usamos key para gestionar el currentUser y recomopner el composable cuando cambia
+        val startDestination = if (currentUser != null) Screen.MainApp.route else Screen.Login.route
 
         NavHost(navController = navController, startDestination = startDestination) {
             composable(Screen.Login.route) {
                 LoginScreen(
                     authViewModel = authViewModel,
                     onLoginSuccess = {
-                        navController.navigate("main_app") {
+                        navController.navigate(Screen.MainApp.route) {
                             popUpTo(Screen.Login.route) { inclusive = true }
                         }
                     }
                 )
             }
 
-            composable("main_app") {
+            composable(Screen.MainApp.route) {
                 MainAppScreen(authViewModel = authViewModel)
             }
         }

@@ -10,8 +10,8 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
 class BuzzerSoundViewModel : ViewModel() {
-    private val _isWriting = MutableStateFlow(false)
-    val isWriting = _isWriting.asStateFlow()
+    private val _isWriting = MutableStateFlow(false) // estado mutable
+    val isWriting = _isWriting.asStateFlow() // estado inmutable
 
   fun saveBuzzerSound(
       melody: BuzzerConfig,
