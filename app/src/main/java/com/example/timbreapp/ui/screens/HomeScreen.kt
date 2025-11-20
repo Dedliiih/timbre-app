@@ -149,7 +149,6 @@ fun StatusCard(isOnline: Boolean, isLoading: Boolean) {
             label = "Card Content Animation"
         ) { cardIsLoading ->
             if (cardIsLoading) {
-                // Estado de Carga
                 Box(
                     modifier = Modifier.fillMaxSize(),
                     contentAlignment = Alignment.Center

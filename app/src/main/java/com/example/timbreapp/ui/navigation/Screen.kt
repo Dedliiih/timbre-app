@@ -9,6 +9,7 @@ import androidx.compose.material.icons.filled.Notifications
 import androidx.compose.material.icons.filled.Schedule
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material.icons.filled.ToggleOn
+import androidx.compose.material.icons.filled.Tune
 import androidx.compose.ui.graphics.vector.ImageVector
 
 sealed class Screen(val route: String, val title: String, val icon: ImageVector) {
@@ -20,4 +21,5 @@ sealed class Screen(val route: String, val title: String, val icon: ImageVector)
     object AlertSchedule: Screen("alert_schedule_screen", "Horario de alerta", Icons.Default.Schedule)
     object AlertModes: Screen("alert_modes_screen", "Modos de alerta", Icons.Default.ToggleOn)
     object MainApp: Screen("main_app", "Main", Icons.Default.HomeMini)
+    object SensorRange: Screen("sensor_range_screen", "Rango del Sensor", Icons.Default.Tune)
 }

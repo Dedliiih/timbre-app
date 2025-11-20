@@ -70,6 +70,14 @@ fun SettingsScreen(
             HorizontalDivider(modifier = Modifier.padding(horizontal = 16.dp))
 
             SettingItem(
+                title = Screen.SensorRange.title,
+                description = "Ajusta la sensibilidad del sensor de movimiento",
+                icon = Screen.SensorRange.icon,
+                onClick = { navController.navigate(Screen.SensorRange.route) }
+            )
+            HorizontalDivider(modifier = Modifier.padding(horizontal = 16.dp))
+
+            SettingItem(
                 title = "Cerrar Sesión",
                 description = "Cierra tu sesión actual",
                 icon = Icons.AutoMirrored.Filled.Logout,

@@ -11,6 +11,7 @@ import com.example.timbreapp.ui.screens.BuzzerSoundScreen
 import com.example.timbreapp.ui.screens.HomeScreen
 import com.example.timbreapp.ui.screens.LoginScreen
 import com.example.timbreapp.ui.screens.NotificationsScreen
+import com.example.timbreapp.ui.screens.SensorRangeScreen
 import com.example.timbreapp.ui.screens.SettingsScreen
 import com.example.timbreapp.ui.viewmodel.AuthViewModel
 
@@ -39,6 +40,10 @@ fun AppNavigation(navController: NavHostController, modifier: Modifier, authView
 
         composable(Screen.Home.route) {
             HomeScreen(navController = navController)
+        }
+
+        composable(Screen.SensorRange.route) {
+            SensorRangeScreen(navController = navController)
         }
     }
 }
