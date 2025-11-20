@@ -17,7 +17,8 @@ import com.example.timbreapp.ui.navigation.Screen
 fun BottomNavBar(navController: NavController, modifier: Modifier = Modifier) {
     val items = listOf(
         Screen.Notifications,
-        Screen.Settings
+        Screen.Home,
+        Screen.Settings,
     )
 
     NavigationBar(
