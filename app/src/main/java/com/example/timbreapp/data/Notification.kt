@@ -32,10 +32,12 @@ sealed class NotificationType(val id: String, val displayName: String, val icon:
 
 data class Notification(
     val notificationType: NotificationType,
-    val date: String
+    val date: String,
+    val duration: Int? = null
 )
 
 data class FirebaseNotification(
     val notificationType: String? = null,
-    val date: Long? = null
+    val date: Long? = null,
+    val duration: Int? = null
 )

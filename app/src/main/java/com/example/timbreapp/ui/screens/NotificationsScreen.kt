@@ -75,13 +75,14 @@ fun NotificationsScreen(modifier: Modifier = Modifier) {
                 val notificationList = firebaseList.map { firebaseNotification ->
                     Notification(
                         notificationType = NotificationType.createNotificationFromId(firebaseNotification.notificationType ?: "DOORBELL"),
-                        date = formatTimestamp(firebaseNotification.date ?: 0L)
+                        date = formatTimestamp(firebaseNotification.date ?: 0L),
+                        duration = firebaseNotification.duration
                     )
             }
                 LazyColumn(
                     modifier = modifier.padding(start = 16.dp, end = 16.dp)
                 ) {
-                    items(notificationList) { notification  ->
+                    items(notificationList.sortedByDescending { it.date }) { notification ->
                         NotificationItem(alert = notification)
                         Spacer(modifier = Modifier.height(12.dp))
                     }
