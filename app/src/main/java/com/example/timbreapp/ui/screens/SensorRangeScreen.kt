@@ -38,7 +38,7 @@ fun SensorRangeScreen(
         valueType = SensorRangeConfig::class.java
     )
 
-    var sliderValue by remember { mutableStateOf(5.0f) }
+    var sliderValue by remember { mutableStateOf(1.5f) }
     val isSaving by sensorRangeViewModel.isSaving.collectAsState()
     val context = LocalContext.current
 
@@ -105,8 +105,8 @@ fun SensorRangeScreen(
                     onValueChange = { newValue ->
                         sliderValue = (newValue * 10).roundToInt() / 10f
                     },
-                    valueRange = 0f..10f,
-                    steps = 99,
+                    valueRange = 0f..3f,
+                    steps = 29,
                     modifier = Modifier.padding(horizontal = 16.dp)
                 )
 
