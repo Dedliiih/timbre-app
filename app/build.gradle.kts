@@ -55,6 +55,7 @@ dependencies {
     implementation("com.android.volley:volley:1.2.1")
     implementation(libs.androidx.navigation.compose)
     implementation("com.google.firebase:firebase-auth")
+    implementation("com.google.firebase:firebase-messaging")
     implementation("androidx.compose.material:material-icons-extended:1.7.8")
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

@@ -72,7 +72,9 @@ fun NotificationsScreen(modifier: Modifier = Modifier) {
             } else if (firebaseList.isEmpty()) {
                 Text("No hay notificaciones para mostrar")
             } else {
-                val notificationList = firebaseList.map { firebaseNotification ->
+                val sortedFirebaseList = firebaseList.sortedByDescending { it.date ?: 0L }
+
+                val notificationList = sortedFirebaseList.map { firebaseNotification ->
                     Notification(
                         notificationType = NotificationType.createNotificationFromId(firebaseNotification.notificationType ?: "DOORBELL"),
                         date = formatTimestamp(firebaseNotification.date ?: 0L),
@@ -82,7 +84,7 @@ fun NotificationsScreen(modifier: Modifier = Modifier) {
                 LazyColumn(
                     modifier = modifier.padding(start = 16.dp, end = 16.dp)
                 ) {
-                    items(notificationList.sortedByDescending { it.date }) { notification ->
+                    items(notificationList) { notification ->
                         NotificationItem(alert = notification)
                         Spacer(modifier = Modifier.height(12.dp))
                     }

@@ -2,6 +2,7 @@ package com.example.timbreapp.ui.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.timbreapp.firestore.EscribirFirebase
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.auth
@@ -37,5 +38,23 @@ class AuthViewModel : ViewModel() {
     fun signOut() {
         auth.signOut()
         _currentUser.value = null
+    }
+
+    fun saveFCMToken(token: String) {
+        val userId = auth.currentUser?.uid ?: return
+        viewModelScope.launch {
+            try {
+                EscribirFirebase(
+                    field  = "users/$userId/fcmToken",
+                    value = token,
+                )
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+        }
+    }
+
+    fun updateFCMToken(newToken: String) {
+        saveFCMToken(newToken)
     }
 }

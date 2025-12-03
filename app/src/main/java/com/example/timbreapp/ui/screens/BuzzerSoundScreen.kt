@@ -47,7 +47,7 @@ private val melodyOptions = listOf(
     MelodyOption(
         name = "Melodía China",
         buzzerConfig = BuzzerConfig(
-            melody = listOf(349, 349, 349, 349, 311, 311, 261, 261, 349),
+            melody = listOf(349, 349, 349, 349, 311, 311, 261, 261, 311),
             durations = listOf(8f, 8f, 8f, 8f, 4f, 4f, 4f, 4f, 1.5f)
         )
     ),
